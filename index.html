@@ -63,7 +63,7 @@
 </head>
 <body>
 
-  <h1>mange un Spas12 pour être meilleur</h1>
+  <h1>eat a Spas12 to be better</h1>
 
   <div class="challenge" id="challengeBox">
     <p id="challengeText">Cliquez sur "Continuer" pour commencer</p>
@@ -72,18 +72,18 @@
   </div>
 
   <script>
-    // JS Logic
+    // Clean JS
     const challenges = [
-      "Je ne suis pas un skibidi toilet",
-      "Je pète vraiment",
-      "Mettez un mot de passe avec 12 caractères avec le mot 'skibidi' inclus",
-      "Écrivez 'J'aime le Spas12'",
-      "Quelle est la capitale de la France ? (réponse: Paris)",
-      "Trouvez le mot caché : S _ I _ I _ I (réponse: SKIBIDI)",
-      "Écrivez 1234567890 sans faute",
-      "Combien de lettres dans 'Spas12' ? (réponse: 6)",
-      "Tapez 'je veux manger un spas12'",
-      "Êtes-vous prêt ? Tapez 'OUI' pour continuer"
+      { question: "Je ne suis pas un skibidi toilet", needInput: false },
+      { question: "Je pète vraiment", needInput: false },
+      { question: "Mettez un mot de passe avec 12 caractères avec le mot 'skibidi' inclus", needInput: true, expected: "skibidi1234" },
+      { question: "Écrivez 'J'aime le Spas12'", needInput: true, expected: "j'aime le spas12" },
+      { question: "Quelle est la capitale de la France ? (réponse: Paris)", needInput: true, expected: "paris" },
+      { question: "Trouvez le mot caché : S _ I _ I _ I (réponse: SKIBIDI)", needInput: true, expected: "skibidi" },
+      { question: "Écrivez 1234567890 sans faute", needInput: true, expected: "1234567890" },
+      { question: "Combien de lettres dans 'Spas12' ? (réponse: 6)", needInput: true, expected: "6" },
+      { question: "Tapez 'je veux manger un spas12'", needInput: true, expected: "je veux manger un spas12" },
+      { question: "Êtes-vous prêt ? Tapez 'OUI' pour continuer", needInput: true, expected: "oui" }
     ];
 
     let currentChallenge = 0;
@@ -92,58 +92,39 @@
     const nextButton = document.getElementById('nextButton');
     const userInput = document.getElementById('userInput');
 
-    nextButton.addEventListener('click', function() {
-      if (currentChallenge === 0) {
-        showChallenge();
-      } else {
-        checkAnswer();
-      }
-    });
+    nextButton.addEventListener('click', () => {
+      const challenge = challenges[currentChallenge];
 
-    function showChallenge() {
-      challengeText.innerText = challenges[currentChallenge];
-      if (currentChallenge >= 2) {
-        userInput.style.display = 'block'; // Show input for challenges 3+
-      } else {
-        userInput.style.display = 'none'; // Hide input for first two challenges
-      }
-      userInput.value = ''; // Reset input
-    }
-
-    function checkAnswer() {
-      const answer = userInput.value.trim().toLowerCase();
-      const correctAnswers = [
-        "", // No input needed for first
-        "", // No input needed for second
-        "", // just any input for password
-        "j'aime le spas12",
-        "paris",
-        "skibidi",
-        "1234567890",
-        "6",
-        "je veux manger un spas12",
-        "oui"
-      ];
-
-      if (currentChallenge < 2) {
-        // No check needed
-        currentChallenge++;
-        if (currentChallenge < challenges.length) {
-          showChallenge();
-        } else {
-          rickroll();
-        }
-      } else {
-        if (answer === correctAnswers[currentChallenge]) {
+      if (challenge.needInput) {
+        // Need to validate text input
+        const answer = userInput.value.trim().toLowerCase();
+        if (answer === challenge.expected) {
           currentChallenge++;
-          if (currentChallenge < challenges.length) {
-            showChallenge();
-          } else {
-            rickroll();
-          }
+          nextChallenge();
         } else {
           alert("Mauvaise réponse ! Réessayez.");
         }
+      } else {
+        // No input needed, go directly to next
+        currentChallenge++;
+        nextChallenge();
+      }
+    });
+
+    function nextChallenge() {
+      if (currentChallenge >= challenges.length) {
+        rickroll();
+        return;
+      }
+
+      const challenge = challenges[currentChallenge];
+      challengeText.innerText = challenge.question;
+
+      if (challenge.needInput) {
+        userInput.style.display = 'block';
+        userInput.value = '';
+      } else {
+        userInput.style.display = 'none';
       }
     }
 
