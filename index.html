@@ -2,88 +2,135 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Spas12</title>
+  <title>Spas12 Chaos</title>
   <style>
-    /* CSS Style */
+    /* CRAZY CSS */
     body {
       margin: 0;
       padding: 0;
       height: 100vh;
       background-color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
       text-align: center;
+      animation: shake 0.5s infinite;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(1px, 1px) rotate(0deg); }
+      10% { transform: translate(-1px, -2px) rotate(-1deg); }
+      20% { transform: translate(-3px, 0px) rotate(1deg); }
+      30% { transform: translate(3px, 2px) rotate(0deg); }
+      40% { transform: translate(1px, -1px) rotate(1deg); }
+      50% { transform: translate(-1px, 2px) rotate(-1deg); }
+      60% { transform: translate(-3px, 1px) rotate(0deg); }
+      70% { transform: translate(3px, 1px) rotate(-1deg); }
+      80% { transform: translate(-1px, -1px) rotate(1deg); }
+      90% { transform: translate(1px, 2px) rotate(0deg); }
+      100% { transform: translate(1px, -2px) rotate(-1deg); }
     }
 
     h1 {
-      font-size: 36px;
-      color: #333;
-      margin-bottom: 40px;
+      font-size: 42px;
+      color: red;
+      margin-top: 20px;
     }
 
     .challenge {
-      background-color: #f9f9f9;
-      border: 2px solid #ccc;
+      background-color: #ffebee;
+      border: 4px dashed red;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      max-width: 400px;
-      margin-top: 20px;
+      margin: 20px auto;
+      width: 80%;
+      box-shadow: 0 0 20px red;
+    }
+
+    .crazy-text {
+      color: red;
+      font-size: 32px;
+      font-weight: bold;
+      margin: 20px 0;
+      animation: blinker 0.6s linear infinite;
+    }
+
+    @keyframes blinker {
+      50% { opacity: 0; }
+    }
+
+    img {
+      max-width: 300px;
+      margin: 20px;
+      border: 5px solid red;
+      border-radius: 15px;
+      animation: spin 3s linear infinite;
+    }
+
+    @keyframes spin {
+      from {transform: rotate(0deg);}
+      to {transform: rotate(360deg);}
     }
 
     button {
       margin-top: 20px;
-      padding: 12px 24px;
-      font-size: 18px;
-      font-weight: bold;
-      background-color: #4CAF50;
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: red;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      box-shadow: 0 0 10px red;
+      transition: background-color 0.2s;
     }
 
     button:hover {
-      background-color: #45a049;
+      background-color: darkred;
     }
 
     input[type="text"] {
       margin-top: 15px;
-      padding: 8px;
-      width: 80%;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
+      padding: 10px;
+      width: 70%;
+      font-size: 18px;
+      border-radius: 8px;
+      border: 2px solid red;
     }
   </style>
 </head>
 <body>
 
-  <h1>eat a Spas12 to be better</h1>
+  <h1>OMG !!!! WTF ???? SPAASSSS 12 !!!!!!!</h1>
+
+  <div id="randomImages"></div>
 
   <div class="challenge" id="challengeBox">
-    <p id="challengeText">Cliquez sur "Continuer" pour commencer</p>
+    <p id="challengeText">Cliquez pour commencer votre aventure SPAZZZZ12</p>
     <input type="text" id="userInput" style="display:none;" placeholder="Votre réponse ici...">
+    <br>
     <button id="nextButton">Continuer</button>
   </div>
 
   <script>
-    // Clean JS
+    const images = [
+      'https://i.imgur.com/1ZQZ1Zp.png', // brainot meme
+      'https://i.imgur.com/7kP6d1E.png', // tung sahur
+      'https://i.imgur.com/A2b5BJo.png', // tralalero
+      'https://i.imgur.com/Z4X6P5V.png', // random chaos
+      'https://i.imgur.com/dJxLvVK.png', // skibidi meme
+    ];
+
     const challenges = [
-      { question: "Je ne suis pas un skibidi toilet", needInput: false },
-      { question: "Je pète vraiment", needInput: false },
-      { question: "Mettez un mot de passe avec 12 caractères avec le mot 'skibidi' inclus", needInput: true, expected: "skibidi1234" },
-      { question: "Écrivez 'J'aime le Spas12'", needInput: true, expected: "j'aime le spas12" },
-      { question: "Quelle est la capitale de la France ? (réponse: Paris)", needInput: true, expected: "paris" },
-      { question: "Trouvez le mot caché : S _ I _ I _ I (réponse: SKIBIDI)", needInput: true, expected: "skibidi" },
-      { question: "Écrivez 1234567890 sans faute", needInput: true, expected: "1234567890" },
-      { question: "Combien de lettres dans 'Spas12' ? (réponse: 6)", needInput: true, expected: "6" },
-      { question: "Tapez 'je veux manger un spas12'", needInput: true, expected: "je veux manger un spas12" },
-      { question: "Êtes-vous prêt ? Tapez 'OUI' pour continuer", needInput: true, expected: "oui" }
+      { question: "JE NE SUIS PAS UN SKIBIDI TOILET !!!!!", needInput: false },
+      { question: "JE PÈTE VRAIMENT !!!!!", needInput: false },
+      { question: "Tapez un mot de passe de 12 lettres avec skibidi !!!!", needInput: true, expected: "skibidi1234" },
+      { question: "ÉCRIVEZ : J'aime le Spas12 !!!!", needInput: true, expected: "j'aime le spas12" },
+      { question: "Quelle est la capitale de la France ?? OMG", needInput: true, expected: "paris" },
+      { question: "Complétez : S_K_B_D_ !!!", needInput: true, expected: "skibidi" },
+      { question: "Écrivez 1234567890 sans erreur !!!!", needInput: true, expected: "1234567890" },
+      { question: "Combien de lettres dans Spas12 ????", needInput: true, expected: "6" },
+      { question: "Tapez 'je veux manger un spas12' !!!!!", needInput: true, expected: "je veux manger un spas12" },
+      { question: "Êtes-vous prêt ?? Tapez OUIIIII !!!!!", needInput: true, expected: "oui" }
     ];
 
     let currentChallenge = 0;
@@ -91,21 +138,26 @@
     const challengeText = document.getElementById('challengeText');
     const nextButton = document.getElementById('nextButton');
     const userInput = document.getElementById('userInput');
+    const randomImages = document.getElementById('randomImages');
+
+    function addRandomImage() {
+      const img = document.createElement('img');
+      img.src = images[Math.floor(Math.random() * images.length)];
+      randomImages.appendChild(img);
+    }
 
     nextButton.addEventListener('click', () => {
       const challenge = challenges[currentChallenge];
 
       if (challenge.needInput) {
-        // Need to validate text input
         const answer = userInput.value.trim().toLowerCase();
         if (answer === challenge.expected) {
           currentChallenge++;
           nextChallenge();
         } else {
-          alert("Mauvaise réponse ! Réessayez.");
+          alert("MAUVAISE RÉPONSE !!!!!!!!!!");
         }
       } else {
-        // No input needed, go directly to next
         currentChallenge++;
         nextChallenge();
       }
@@ -118,7 +170,7 @@
       }
 
       const challenge = challenges[currentChallenge];
-      challengeText.innerText = challenge.question;
+      challengeText.innerHTML = `<span class="crazy-text">${challenge.question}</span>`;
 
       if (challenge.needInput) {
         userInput.style.display = 'block';
@@ -126,6 +178,8 @@
       } else {
         userInput.style.display = 'none';
       }
+
+      addRandomImage();
     }
 
     function rickroll() {
