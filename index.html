@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <title>Spas12</title>
@@ -15,61 +15,141 @@
       justify-content: center;
       align-items: center;
       font-family: Arial, sans-serif;
+      text-align: center;
     }
 
     h1 {
       font-size: 36px;
       color: #333;
-      margin-bottom: 50px;
-      text-align: center;
+      margin-bottom: 40px;
     }
 
-    .captcha-box {
-      display: flex;
-      align-items: center;
+    .challenge {
       background-color: #f9f9f9;
       border: 2px solid #ccc;
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: all 0.3s ease;
+      max-width: 400px;
+      margin-top: 20px;
     }
 
-    .captcha-box:hover {
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-    }
-
-    .captcha-checkbox {
-      width: 24px;
-      height: 24px;
-      border: 2px solid #666;
-      border-radius: 4px;
-      margin-right: 15px;
-      background-color: white;
-    }
-
-    .captcha-text {
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
       font-size: 18px;
-      color: #666;
+      font-weight: bold;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    input[type="text"] {
+      margin-top: 15px;
+      padding: 8px;
+      width: 80%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
 
-  <h1>mange un spas12 pour devenir meilleur</h1>
+  <h1>mange un Spas12 pour être meilleur</h1>
 
-  <div class="captcha-box" id="captchaBox">
-    <div class="captcha-checkbox" id="captchaCheckbox"></div>
-    <div class="captcha-text">Je suis pas un skibidi toilet.</div>
+  <div class="challenge" id="challengeBox">
+    <p id="challengeText">Cliquez sur "Continuer" pour commencer</p>
+    <input type="text" id="userInput" style="display:none;" placeholder="Votre réponse ici...">
+    <button id="nextButton">Continuer</button>
   </div>
 
   <script>
-    // JavaScript
-    const captchaBox = document.getElementById('captchaBox');
-    captchaBox.addEventListener('click', function() {
-      window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+    // JS Logic
+    const challenges = [
+      "Je ne suis pas un skibidi toilet",
+      "Je pète vraiment",
+      "Mettez un mot de passe avec 12 caractères avec le mot 'skibidi' inclus",
+      "Écrivez 'J'aime le Spas12'",
+      "Quelle est la capitale de la France ? (réponse: Paris)",
+      "Trouvez le mot caché : S _ I _ I _ I (réponse: SKIBIDI)",
+      "Écrivez 1234567890 sans faute",
+      "Combien de lettres dans 'Spas12' ? (réponse: 6)",
+      "Tapez 'je veux manger un spas12'",
+      "Êtes-vous prêt ? Tapez 'OUI' pour continuer"
+    ];
+
+    let currentChallenge = 0;
+
+    const challengeText = document.getElementById('challengeText');
+    const nextButton = document.getElementById('nextButton');
+    const userInput = document.getElementById('userInput');
+
+    nextButton.addEventListener('click', function() {
+      if (currentChallenge === 0) {
+        showChallenge();
+      } else {
+        checkAnswer();
+      }
     });
+
+    function showChallenge() {
+      challengeText.innerText = challenges[currentChallenge];
+      if (currentChallenge >= 2) {
+        userInput.style.display = 'block'; // Show input for challenges 3+
+      } else {
+        userInput.style.display = 'none'; // Hide input for first two challenges
+      }
+      userInput.value = ''; // Reset input
+    }
+
+    function checkAnswer() {
+      const answer = userInput.value.trim().toLowerCase();
+      const correctAnswers = [
+        "", // No input needed for first
+        "", // No input needed for second
+        "", // just any input for password
+        "j'aime le spas12",
+        "paris",
+        "skibidi",
+        "1234567890",
+        "6",
+        "je veux manger un spas12",
+        "oui"
+      ];
+
+      if (currentChallenge < 2) {
+        // No check needed
+        currentChallenge++;
+        if (currentChallenge < challenges.length) {
+          showChallenge();
+        } else {
+          rickroll();
+        }
+      } else {
+        if (answer === correctAnswers[currentChallenge]) {
+          currentChallenge++;
+          if (currentChallenge < challenges.length) {
+            showChallenge();
+          } else {
+            rickroll();
+          }
+        } else {
+          alert("Mauvaise réponse ! Réessayez.");
+        }
+      }
+    }
+
+    function rickroll() {
+      window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    }
   </script>
 
 </body>
