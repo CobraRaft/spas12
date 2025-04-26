@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spas12</title>
+  <style>
+    /* CSS Style */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #333;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .captcha-box {
+      display: flex;
+      align-items: center;
+      background-color: #f9f9f9;
+      border: 2px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .captcha-box:hover {
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    .captcha-checkbox {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #666;
+      border-radius: 4px;
+      margin-right: 15px;
+      background-color: white;
+    }
+
+    .captcha-text {
+      font-size: 18px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>eat a Spas12 to be better</h1>
+
+  <div class="captcha-box" id="captchaBox">
+    <div class="captcha-checkbox" id="captchaCheckbox"></div>
+    <div class="captcha-text">I'm not a robot</div>
+  </div>
+
+  <script>
+    // JavaScript
+    const captchaBox = document.getElementById('captchaBox');
+    captchaBox.addEventListener('click', function() {
+      window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+    });
+  </script>
+
+</body>
+</html>
